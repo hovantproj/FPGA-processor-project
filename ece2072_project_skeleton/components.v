@@ -91,11 +91,10 @@ module ALU (input_a, input_b, alu_op, result);
 	// This module computes arithmetic result from input_a and input_b based on alu_op
 
 
-    input [15:0] input_a,
-    input [15:0] input_b,
-    input [1:0] alu_op,
-    output reg [15:0] result
-);
+    input [15:0] input_a;
+    input [15:0] input_b;
+    input [2:0] alu_op;
+    output reg [15:0] result;
 
 	always @(*) begin
 		case(alu_op)
@@ -105,9 +104,9 @@ module ALU (input_a, input_b, alu_op, result);
 			3'b010: result = input_a - input_b;
 			3'b011: begin
 				if(input_a[15]) begin
-					result <= input_b <<< input_a;
-				and else begin
-					result = input_b >>> input_a;
+					result = $signed(input_b) <<< (-input_a);
+				else
+					result = $signed(input_b) >>> input_a;
 				end
 			end
 			
@@ -131,20 +130,19 @@ module register_n(data_in, r_in, clk, Q, rst);
 
 	parameter N = 16;
 	
-	input wire [N-1:0] data_in,
-	input wire r_in,
-	input wire clk,
-	input wire rst,
-	output reg [N-1:0] Q
+	input wire [N-1:0] data_in;
+	input wire r_in;
+	input wire clk;
+	input wire rst;
+	output reg [N-1:0] Q;
 	
 	// waits for clock tick to begin
 	always @(posedge clk) begin
 		// clears register if rst requested
-		if(rst) begin
-			Q <= {N{1'b0}}
-		and else if (r_in) begin
+		if(rst)
+			Q <= {N{1'b0}};
+		and else if (r_in)
 			Q <= data_in;
-		end
 	end
 	
 endmodule
