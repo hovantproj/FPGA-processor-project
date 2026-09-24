@@ -103,12 +103,11 @@ module ALU (input_a, input_b, alu_op, result);
 			3'b001: result = input_a + input_b;
 			3'b010: result = input_a - input_b;
 			3'b011: begin
-				if(input_a[15]) begin
+				if(input_a[15]) 
 					result = $signed(input_b) <<< (-input_a);
 				else
 					result = $signed(input_b) >>> input_a;
 				end
-			end
 			
 			default: result = 16'b0000;
 			
@@ -141,7 +140,7 @@ module register_n(data_in, r_in, clk, Q, rst);
 		// clears register if rst requested
 		if(rst)
 			Q <= {N{1'b0}};
-		and else if (r_in)
+		else if (r_in)
 			Q <= data_in;
 	end
 	
