@@ -31,6 +31,11 @@ module components_tb.v;
 	ALU ALU(.input_a(input_a), .input_b(input_b), .alu_op(alu_op));
 	
 	// Multiplexer
+	reg [15:0] SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G;
+	reg [3:0] sel;
+	wire [15:0] bus;
+	multiplexer multiplexer(.SignExtDin(SignExtDin), .R0(R0), .R1(R1), .R2(R2), .R3(R3), .R4(R4), .R5(R5), .R6(R6), .R7(R7), .G(G), .sel(sel), .Bus(Bus));
+	
 	
 	// Registers
 	
