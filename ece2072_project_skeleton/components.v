@@ -122,8 +122,8 @@ endmodule
 
 
 module register_n(data_in, r_in, clk, Q, rst);
-
-
+	// This module implements registers that will be used in the processor.
+	
 	// To set parameter N during instantiation, you can use:
 	// register_n #(.N(num_bits)) reg_IR(.....), 
 	// where num_bits is how many bits you want to set N to
@@ -136,15 +136,16 @@ module register_n(data_in, r_in, clk, Q, rst);
 	input wire clk,
 	input wire rst,
 	output reg [N-1:0] Q
-	always @(posedge clk) begin
-		if(rst) begin
-			Q
-
-	/* 
-	 * This module implements registers that will be used in the processor.
-	 */
-	// TODO: Declare inputs, outputs, and parameter:
 	
-	// TODO: Implement register logic:
+	// waits for clock tick to begin
+	always @(posedge clk) begin
+		// clears register if rst requested
+		if(rst) begin
+			Q <= {N{1'b0}}
+		and else if (r_in) begin
+			Q <= data_in;
+		end
+	end
+	
 endmodule
 
