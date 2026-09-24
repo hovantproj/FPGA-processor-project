@@ -12,8 +12,21 @@ module components_tb.v;
 	// Sign Extender
 	reg signed [8:0] in;
 	wire signed [15:0] out;
-	reg signed [15:0] expected;
+	reg signed [15:0] expected1;
 	sign_extend sign_extend(.in(in), .ext(out));
 	
+	
+	
+	// ALU
+	reg [15:0] input_a;
+	reg [15:0] input_b;
+	reg [2:0] alu_op;
+	wire [15:0] result;
+	reg [15:0] expected3;
+	ALU ALU(.input_a(input_a), .input_b(input_b), .alu_op(alu_op));
+	
+	// Multiplexer
+	
+	// Registers
 	
 endmodule
