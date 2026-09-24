@@ -87,7 +87,6 @@ module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G, sel, Bus);
 endmodule
 
 
-
 module ALU (input_a, input_b, alu_op, result);
 	 
 	// This module computes arithmetic result from input_a and input_b based on alu_op
@@ -106,11 +105,11 @@ module ALU (input_a, input_b, alu_op, result);
 			3'b010: result = input_a - input_b;
 			3'b011:
 				if(input_a[15]) begin
-					result = $signed(input_b) >>> (-input_a); // https://electronics.stackexchange.com/questions/132773/difference-between-and-in-verilog (ask jess next prac)
+					result = $signed(input_b) <<< (-input_a); // https://electronics.stackexchange.com/questions/132773/difference-between-and-in-verilog
 				end
 				
 				else begin
-					result = $signed(input_b) <<< input_a;
+					result = $signed(input_b) >>> input_a;
 				end
 			
 			default: result = 16'b0000;
