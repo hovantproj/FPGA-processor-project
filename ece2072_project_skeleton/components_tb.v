@@ -15,5 +15,10 @@ module components_tb.v;
 	reg signed [15:0] expected;
 	sign_extend sign_extend(.in(in), .ext(out));
 	
-	
+	// tick_FSM
+	reg tick_clk;
+	reg tick_enable;
+	reg tick_rst;
+	wire [3:0] tick_out;
+	reg [3:0] expecte2;
 endmodule
