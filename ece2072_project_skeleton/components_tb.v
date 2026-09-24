@@ -20,7 +20,7 @@ module components_tb.v;
 	reg tick_enable;
 	reg tick_rst;
 	wire [3:0] tick_out;
-	reg [3:0] expecte2;
+	reg [3:0] expected2;
 	
 	// ALU
 	reg [15:0] input_a;
@@ -33,5 +33,12 @@ module components_tb.v;
 	// Multiplexer
 	
 	// Registers
-	
+	parameter NUM_BITS = 16;
+	reg [NUM_BITS-1:0] data_in;
+	reg r_in;
+	reg clk;
+	reg rst;
+	wire [NUM_BITS-1:0] out;
+	reg [NUM_BITS-1:0] expected
+	register_n #(.N(NUM_BITS)) register_n(.data_in(data_in), .r_in(r_in), .clk(clk), .rst(rst), .Q(out)))
 endmodule

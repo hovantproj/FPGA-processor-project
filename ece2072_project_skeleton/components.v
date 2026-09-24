@@ -47,6 +47,10 @@ module tick_FSM(rst, clk, enable, tick);
 				default: tick <= A;
 			endcase
 		end
+		
+		else begin
+			tick <= tick; // Do nothing
+		end
 	 end
 endmodule
 
@@ -99,7 +103,6 @@ module ALU (input_a, input_b, alu_op, result);
 
 	always @(*) begin
 		case(alu_op)
-			
 			3'b000: result = input_a * input_b;
 			3'b001: result = input_a + input_b;
 			3'b010: result = input_a - input_b;
@@ -111,13 +114,10 @@ module ALU (input_a, input_b, alu_op, result);
 				else begin
 					result = $signed(input_b) >>> input_a;
 				end
-			
+				
 			default: result = 16'b0000;
-			
-			
 		endcase
 	end
-	
 endmodule
 
 
@@ -147,6 +147,10 @@ module register_n(data_in, r_in, clk, Q, rst);
 		
 		else if (r_in) begin
 			Q <= data_in;
+		end
+		
+		else begin
+			Q <= Q; // Do nothing
 		end
 	end
 endmodule
