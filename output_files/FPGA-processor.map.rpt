@@ -1,5 +1,5 @@
 Analysis & Synthesis report for FPGA-processor
-Thu Sep 24 15:38:02 2026
+Thu Sep 24 15:43:07 2026
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -36,7 +36,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Thu Sep 24 15:38:02 2026           ;
+; Analysis & Synthesis Status        ; Failed - Thu Sep 24 15:43:07 2026           ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; FPGA-processor                              ;
 ; Top-level Entity Name              ; FPGA-processor                              ;
@@ -146,8 +146,8 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 4           ;
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 10          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
 ; Maximum used               ; 1           ;
@@ -163,30 +163,30 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Sep 24 15:37:27 2026
+    Info: Processing started: Thu Sep 24 15:42:56 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off FPGA-processor -c FPGA-processor
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
-Error (10170): Verilog HDL syntax error at proc_tb.v(9) near text: ".";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Mac/Home/Documents/GitHub/FPGA-processor-project/ece2072_project_skeleton/proc_tb.v Line: 9
+Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
+Error (10170): Verilog HDL syntax error at proc_tb.v(9) near text: ".";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/proc_tb.v Line: 9
 Info (12021): Found 0 design units, including 0 entities, in source file ece2072_project_skeleton/proc_tb.v
-Error (10170): Verilog HDL syntax error at proc_extension_tb.v(9) near text: ".";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Mac/Home/Documents/GitHub/FPGA-processor-project/ece2072_project_skeleton/proc_extension_tb.v Line: 9
+Error (10170): Verilog HDL syntax error at proc_extension_tb.v(9) near text: ".";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/proc_extension_tb.v Line: 9
 Info (12021): Found 0 design units, including 0 entities, in source file ece2072_project_skeleton/proc_extension_tb.v
 Info (12021): Found 0 design units, including 0 entities, in source file ece2072_project_skeleton/proc_extension.v
-Error (10170): Verilog HDL syntax error at proc.v(31) near text: ")";  expecting an operand. Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Mac/Home/Documents/GitHub/FPGA-processor-project/ece2072_project_skeleton/proc.v Line: 31
-Error (10112): Ignored design unit "simple_proc" at proc.v(8) due to previous errors File: C:/Mac/Home/Documents/GitHub/FPGA-processor-project/ece2072_project_skeleton/proc.v Line: 8
+Error (10170): Verilog HDL syntax error at proc.v(31) near text: ")";  expecting an operand. Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/proc.v Line: 31
+Error (10112): Ignored design unit "simple_proc" at proc.v(8) due to previous errors File: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/proc.v Line: 8
 Info (12021): Found 0 design units, including 0 entities, in source file ece2072_project_skeleton/proc.v
-Error (10170): Verilog HDL syntax error at components_tb.v(10) near text: ".";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Mac/Home/Documents/GitHub/FPGA-processor-project/ece2072_project_skeleton/components_tb.v Line: 10
+Error (10170): Verilog HDL syntax error at components_tb.v(10) near text: ".";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v Line: 10
 Info (12021): Found 0 design units, including 0 entities, in source file ece2072_project_skeleton/components_tb.v
 Info (12021): Found 5 design units, including 5 entities, in source file ece2072_project_skeleton/components.v
-    Info (12023): Found entity 1: sign_extend File: C:/Mac/Home/Documents/GitHub/FPGA-processor-project/ece2072_project_skeleton/components.v Line: 10
-    Info (12023): Found entity 2: tick_FSM File: C:/Mac/Home/Documents/GitHub/FPGA-processor-project/ece2072_project_skeleton/components.v Line: 23
-    Info (12023): Found entity 3: multiplexer File: C:/Mac/Home/Documents/GitHub/FPGA-processor-project/ece2072_project_skeleton/components.v Line: 53
-    Info (12023): Found entity 4: ALU File: C:/Mac/Home/Documents/GitHub/FPGA-processor-project/ece2072_project_skeleton/components.v Line: 89
-    Info (12023): Found entity 5: register_n File: C:/Mac/Home/Documents/GitHub/FPGA-processor-project/ece2072_project_skeleton/components.v Line: 122
+    Info (12023): Found entity 1: sign_extend File: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v Line: 10
+    Info (12023): Found entity 2: tick_FSM File: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v Line: 23
+    Info (12023): Found entity 3: multiplexer File: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v Line: 53
+    Info (12023): Found entity 4: ALU File: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v Line: 89
+    Info (12023): Found entity 5: register_n File: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v Line: 122
 Error: Quartus Prime Analysis & Synthesis was unsuccessful. 5 errors, 2 warnings
-    Error: Peak virtual memory: 13174 megabytes
-    Error: Processing ended: Thu Sep 24 15:38:03 2026
-    Error: Elapsed time: 00:00:36
-    Error: Total CPU time (on all processors): 00:00:57
+    Error: Peak virtual memory: 4713 megabytes
+    Error: Processing ended: Thu Sep 24 15:43:08 2026
+    Error: Elapsed time: 00:00:12
+    Error: Total CPU time (on all processors): 00:00:24
 
 

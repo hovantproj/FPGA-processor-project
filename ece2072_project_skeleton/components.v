@@ -102,10 +102,12 @@ module ALU (input_a, input_b, alu_op, result);
 			3'b000: result = input_a * input_b;
 			3'b001: result = input_a + input_b;
 			3'b010: result = input_a - input_b;
-			3'b011: begin
-				if(input_a[15]) 
-					result = $signed(input_b) <<< (-input_a);
-				else
+			3'b011:
+				if(input_a[15]) begin
+					result = $signed(input_b) <<< (-input_a); // https://electronics.stackexchange.com/questions/132773/difference-between-and-in-verilog
+				end
+				
+				else begin
 					result = $signed(input_b) >>> input_a;
 				end
 			
@@ -138,10 +140,13 @@ module register_n(data_in, r_in, clk, Q, rst);
 	// waits for clock tick to begin
 	always @(posedge clk) begin
 		// clears register if rst requested
-		if(rst)
+		if(rst) begin
 			Q <= {N{1'b0}};
-		else if (r_in)
+		end
+		
+		else if (r_in) begin
 			Q <= data_in;
+		end
 	end
 	
 endmodule
