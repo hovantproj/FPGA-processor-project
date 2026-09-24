@@ -86,7 +86,7 @@ module ALU (input_a, input_b, alu_op, result);
 				end
 			end
 			
-			default: result = 16'h0000;
+			default: result = 16'b0000;
 			
 			
 		endcase
@@ -105,6 +105,15 @@ module register_n(data_in, r_in, clk, Q, rst);
 	// and "..." is your usual input/output signals
 
 	parameter N = 16;
+	
+	input wire [N-1:0] data_in,
+	input wire r_in,
+	input wire clk,
+	input wire rst,
+	output reg [N-1:0] Q
+	always @(posedge clk) begin
+		if(rst) begin
+			Q
 
 	/* 
 	 * This module implements registers that will be used in the processor.
