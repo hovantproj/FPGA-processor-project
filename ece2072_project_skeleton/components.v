@@ -26,9 +26,28 @@ module tick_FSM(rst, clk, enable, tick);
 	 * control the actions of the control unit
 	 */
 
-	// TODO: Declare inputs and outputs
+	input rst;
+	input clk;
+	input enable;
+	output reg [3:0] tick;
 	
-    // TODO: implement FSM
+	 parameter A = 4'b0001, B = 4'b0010, C = 4'b0100, D = 4'b1000;
+	 
+	 always @(posedge clk) begin
+		if (rst) begin
+			tick <= A;
+		end
+		
+		else if (enable) begin
+			case (tick)
+				A: tick <= B;
+				B: tick <= C;
+				C: tick <= D;
+				D: tick <= A;
+				default: tick <= A;
+			endcase
+		end
+	 end
 endmodule
 
 module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G, sel, Bus);
