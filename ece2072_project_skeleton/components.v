@@ -54,10 +54,38 @@ module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G, sel, Bus);
 	/* 
 	 * This module takes 10 inputs and places the correct input onto the bus.
 	 */
-	// TODO: Declare inputs and outputs
+	input [15:0] R0;
+	input [15:0] R1;
+	input [15:0] R2;
+	input [15:0] R3;
+	input [15:0] R4;
+	input [15:0] R5;
+	input [15:0] R6;
+	input [15:0] R7;
+	input [15:0] G;
+	input [3:0] sel;
+	input [15:0] SignExtDin;
+	
+	input wire bus; // TODO: not sure how many bits the bus is
 	
 	// TODO: implement logic
-
+	
+	always @(*) begin
+		case(sel)
+			// Only need 10 cases since 10 inputs
+			4'b0000:
+			4'b0001:
+			4'b0010:
+			4'b0011:
+			4'b0100:
+			4'b0101:
+			4'b0110:
+			4'b0111:
+			4'b1000:
+			4'b1001:
+			default:
+		endcase
+	end
 
 endmodule
 
