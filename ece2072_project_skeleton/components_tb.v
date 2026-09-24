@@ -15,7 +15,7 @@ module components_tb;
 	reg signed [15:0] sign_ext_expected;
 	sign_extend sign_extend(.in(sign_ext_in), .ext(sign_ext_out));
 	
-	// tick_FSM
+	// Tick FSM
 	reg tick_clk;
 	reg tick_enable;
 	reg tick_rst;
@@ -68,8 +68,36 @@ module components_tb;
 		r_in = 1;
 	end
 	
+	always begin // 1 cycle every 10ms (5ms to go up, 5ms to go down)
+		#5
+		tick_clk <= ~tick_clk;
+		reg_clk <= ~reg_clk;
+	end
+	
+	// Sign extender testcases
 	always begin
 		
 	end
+	
+	// Tick FSM testcases
+	always begin
+		
+	end
+	
+	// ALU testcases
+	always begin
+		
+	end
+	
+	// Multiplexer testcases
+	always begin
+		
+	end
+	
+	// Register testcases
+	always begin
+		
+	end
+	
 	
 endmodule
