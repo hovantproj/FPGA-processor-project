@@ -66,27 +66,24 @@ module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G, sel, Bus);
 	input [3:0] sel;
 	input [15:0] SignExtDin;
 	
-	input wire bus; // TODO: not sure how many bits the bus is
-	
-	// TODO: implement logic
+	output reg [15:0] Bus;
 	
 	always @(*) begin
 		case(sel)
 			// Only need 10 cases since 10 inputs
-			4'b0000:
-			4'b0001:
-			4'b0010:
-			4'b0011:
-			4'b0100:
-			4'b0101:
-			4'b0110:
-			4'b0111:
-			4'b1000:
-			4'b1001:
-			default:
+			4'b0000: Bus <= R0;
+			4'b0001: Bus <= R1;
+			4'b0010: Bus <= R2;
+			4'b0011: Bus <= R3;
+			4'b0100: Bus <= R4;
+			4'b0101: Bus <= R5;
+			4'b0110: Bus <= R6;
+			4'b0111: Bus <= R7;
+			4'b1000: Bus <= G;
+			4'b1001: Bus <= SignExtDin;
+			default: Bus <= 16'd0;
 		endcase
 	end
-
 endmodule
 
 module ALU (input_a, input_b, alu_op, result);
