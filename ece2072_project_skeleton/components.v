@@ -8,12 +8,14 @@ Please enter your name and student ID: Philo Lee 36167762
 
 */
 module sign_extend(in, ext);
-	/* 
-	 * This module sign extends the 9-bit Din to a 16-bit output.
-	 */
-	// TODO: Declare inputs and outputs
+
+	// This module sign extends the 9-bit input to a 16-bit output
 	
-	// TODO: implement logic
+	input [8:0] in;
+	output [15:0] ext;
+	
+	assign ext = {{7{in[8]}}, in};
+	
 endmodule
 
 
