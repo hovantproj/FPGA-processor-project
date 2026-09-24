@@ -9,6 +9,11 @@ Please enter your student ID: 36167762 - Philo
 
 */
 module components_tb.v;
-    // TODO: Implement the logic of your testbench here
+	// Sign Extender
+	reg signed [8:0] in;
+	wire signed [15:0] out;
+	reg signed [15:0] expected;
+	sign_extend sign_extend(.in(in), .ext(out));
+	
 	
 endmodule
