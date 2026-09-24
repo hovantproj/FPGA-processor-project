@@ -92,10 +92,7 @@ endmodule
 
 
 module ALU (input_a, input_b, alu_op, result);
-	 
 	// This module computes arithmetic result from input_a and input_b based on alu_op
-
-
     input [15:0] input_a;
     input [15:0] input_b;
     input [2:0] alu_op;
