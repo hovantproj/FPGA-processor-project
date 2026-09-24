@@ -86,6 +86,8 @@ module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G, sel, Bus);
 	end
 endmodule
 
+
+
 module ALU (input_a, input_b, alu_op, result);
 	 
 	// This module computes arithmetic result from input_a and input_b based on alu_op
@@ -148,6 +150,5 @@ module register_n(data_in, r_in, clk, Q, rst);
 			Q <= data_in;
 		end
 	end
-	
 endmodule
 
