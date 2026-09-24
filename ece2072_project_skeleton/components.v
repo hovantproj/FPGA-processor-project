@@ -4,6 +4,7 @@ This file contains Verilog code to implement individual components to be used in
     the CPU.
 
 Please enter your name and student ID: Hovan Truong 36164003
+Please enter your name and student ID: Philo Lee 36167762
 
 */
 module sign_extend(in, ext);
