@@ -103,7 +103,7 @@ module ALU (input_a, input_b, alu_op, result);
 			3'b000: result = input_a * input_b;
 			3'b001: result = input_a + input_b;
 			3'b010: result = input_a - input_b;
-			3'b011:
+			3'b011: begin
 				if(input_a[15]) begin
 					result = $signed(input_b) <<< (-input_a); // https://electronics.stackexchange.com/questions/132773/difference-between-and-in-verilog
 				end
@@ -111,12 +111,12 @@ module ALU (input_a, input_b, alu_op, result);
 				else begin
 					result = $signed(input_b) >>> input_a;
 				end
+			end
 				
 			default: result = 16'b0000;
 		endcase
 	end
 endmodule
-
 
 
 module register_n(data_in, r_in, clk, Q, rst);

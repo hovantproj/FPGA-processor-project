@@ -76,7 +76,34 @@ module components_tb;
 	
 	// Sign extender testcases
 	always begin
+		#1	
+		if (count == 3) begin
+			if (errors == 0) begin
+				$display("extender success");
+			end
+			$stop;
+		end
 		
+		else begin
+			case (count)
+				0: begin 
+					sign_ext_in <= {9{1'b0}};
+					sign_ext_expected <= {16{1'b0}};
+				end
+				1: begin
+					sign_ext_in <= {9{1'b1}};
+					sign_ext_expected <= {16{1'b1}};
+				end
+				2: begin
+					sign_ext_in <= 9'b101010101;
+					sign_ext_expected <= 16'b1111111101010101;
+				end
+			endcase
+		end
+		
+		count = count + 1;
+		
+		#9
 	end
 	
 	// Tick FSM testcases
@@ -98,6 +125,27 @@ module components_tb;
 	always begin
 		
 	end
+	
+	// Check sign extender
+	always begin
+		#9
+		if (count < 3) begin
+			if (sign_ext_out != sign_ext_expected) begin
+				$display("Sign extender error: Input: %d, Output: %d, Expected: %d", sign_ext_in, sign_ext_out, sign_ext_expected);
+				errors = errors + 1;
+			end
+		end
+		
+		#1
+	end
+	
+	// Check tick fsm
+	
+	// Checj alu
+	
+	// Check multiplexer
+	
+	// Check registers
 	
 	
 endmodule
