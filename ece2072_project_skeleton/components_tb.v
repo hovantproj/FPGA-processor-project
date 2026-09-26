@@ -76,15 +76,8 @@ module components_tb;
 	
 	// Sign extender testcases
 	always begin
-		#1	
-		if (count == 3) begin
-			if (errors == 0) begin
-				$display("extender success");
-			end
-			$stop;
-		end
-		
-		else begin
+		#1			
+		if (count < 3) begin
 			case (count)
 				0: begin 
 					sign_ext_in <= {9{1'b0}};
@@ -101,14 +94,43 @@ module components_tb;
 			endcase
 		end
 		
-		count = count + 1;
-		
 		#9
 	end
 	
 	// Tick FSM testcases
 	always begin
-		
+		always begin
+			#1
+			if (count < 5) begin
+				case (count)
+					0: begin 
+						tick_rst <= 1;
+						tick_enable <= 0;
+						tick_expected <= 4'b0001;
+					end
+					
+					1: begin
+						tick_rst <= 0;
+						tick_enable <= 1;
+						tick_expected <= 4'b0010;
+					end	
+					
+					2: begin
+						tick_expected <= 4'b0100;
+					end
+					
+					3: begin
+						tick_expected <= 4'b1000;
+					end
+					
+					4: begin
+						tick_expected <= 4'b0001;
+					end
+				endcase
+			end
+			
+			#9
+		end
 	end
 	
 	// ALU testcases
@@ -147,5 +169,10 @@ module components_tb;
 	
 	// Check registers
 	
+	
+	always begin // Need to increent count, having it in each would screw it up
+		#10
+		count = count + 1;
+	end
 	
 endmodule
