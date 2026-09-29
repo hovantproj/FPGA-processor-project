@@ -137,18 +137,29 @@ module components_tb;
 			case (count)
 				0: begin
 					alu_op = 3'b000;
+					alu_inputs = {16'd6, 16'd10};
+					alu_expected = 16'd60;
+					
 				end
 				
 				1: begin
 					alu_op = 3'b001;
+					alu_inputs = {16'd10, 16'd20};
+					alu_expected = 16'd30;
+					
 				end
 				
 				2: begin
 					alu_op = 3'b010;
+					alu_inputs = {16'd17, 16'd50};
+					alu_expected = -16'd33;
 				end
 				
 				3: begin
 					alu_op = 3'b011;
+					alu_inputs = {16'd2, 16'hFFF0};
+					alu_expected = -16'hFFFC;
+					
 				end
 			endcase
 			
@@ -194,7 +205,7 @@ module components_tb;
 	// Check registers
 	
 	
-	always begin // Need to increent count, having it in each would screw it up
+	always begin // Need to increment count, having it in each would screw it up
 		#10
 		count = count + 1;
 	end
