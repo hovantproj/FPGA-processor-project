@@ -24,7 +24,7 @@ module components_tb;
 	tick_FSM tick_FSM(.rst(tick_rst), .clk(tick_clk), .enable(tick_enable), .tick(tick_out));
 	
 	// ALU
-	reg [31:0] alu_inputs; // Upper 16 bits is A, lower 16 is B
+	reg [31:0] alu_inputs = {32{1'b0}}; // Upper 16 bits is A, lower 16 is B
 	reg [2:0] alu_op;
 	wire [15:0] alu_out;
 	reg [15:0] alu_expected;
@@ -93,64 +93,64 @@ module components_tb;
 			endcase
 		end
 		
-		#9
+		#9;
 	end
 	
 	// Tick FSM testcases
 	always begin
-		always begin
-			#1
-			if (count < 5) begin
-				case (count)
-					0: begin
-						tick_rst <= 1;
-						tick_enable <= 0;
-						tick_expected <= 4'b0001;
-					end
-					
-					1: begin
-						tick_rst <= 0;
-						tick_enable <= 1;
-						tick_expected <= 4'b0010;
-					end	
-					
-					2: begin
-						tick_expected <= 4'b0100;
-					end
-					
-					3: begin
-						tick_expected <= 4'b1000;
-					end
-					
-					4: begin
-						tick_expected <= 4'b0001;
-					end
-				endcase
-			end
-			
-			#9
+		#1
+		if (count < 5) begin
+			case (count)
+				0: begin
+					tick_rst <= 1;
+					tick_enable <= 0;
+					tick_expected <= 4'b0001;
+				end
+				
+				1: begin
+					tick_rst <= 0;
+					tick_enable <= 1;
+					tick_expected <= 4'b0010;
+				end	
+				
+				2: begin
+					tick_expected <= 4'b0100;
+				end
+				
+				3: begin
+					tick_expected <= 4'b1000;
+				end
+				
+				4: begin
+					tick_expected <= 4'b0001;
+				end
+			endcase
 		end
+		
+		#9;
 	end
 	
 	// ALU testcases
 	always begin
 		#1
 		if (count < 4) begin
-			0: begin
-				alu_op = 4'b0000;
-			end
-			
-			1: begin
-				alu_op = 4'b0001;
-			end
-			
-			2: begin
-				alu_op = 4'b0010;
-			end
-			
-			3: begin
-				alu_op = 4'b0011;
-			end
+			case (count)
+				0: begin
+					alu_op = 3'b000;
+				end
+				
+				1: begin
+					alu_op = 3'b001;
+				end
+				
+				2: begin
+					alu_op = 3'b010;
+				end
+				
+				3: begin
+					alu_op = 3'b011;
+				end
+			endcase
 			
 			if (alu_inputs == {32{1'b1}}) begin
 				alu_inputs = {32{1'b0}};
@@ -159,7 +159,7 @@ module components_tb;
 			alu_inputs <= alu_inputs + 1;
 		end
 		
-		#9
+		#9;
 	end
 	
 	// Multiplexer testcases
@@ -176,13 +176,13 @@ module components_tb;
 	always begin
 		#9
 		if (count < 3) begin
-			if (sign_ext_out != sign_ext_expected) begin
+			if (sign_ext_out !== sign_ext_expected) begin
 				$display("Sign extender error: Input: %d, Output: %d, Expected: %d", sign_ext_in, sign_ext_out, sign_ext_expected);
 				errors = errors + 1;
 			end
 		end
 		
-		#1
+		#1;
 	end
 	
 	// Check tick fsm
