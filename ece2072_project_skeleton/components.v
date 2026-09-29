@@ -109,7 +109,7 @@ module ALU (input_a, input_b, alu_op, result);
 				end
 				
 				else begin
-					result = $signed(input_b) >>> input_a;
+					result = $signed(input_b) >>> input_a ;
 				end
 			end
 				

@@ -24,12 +24,11 @@ module components_tb;
 	tick_FSM tick_FSM(.rst(tick_rst), .clk(tick_clk), .enable(tick_enable), .tick(tick_out));
 	
 	// ALU
-	reg [15:0] alu_input_a;
-	reg [15:0] alu_input_b;
+	reg [31:0] alu_inputs; // Upper 16 bits is A, lower 16 is B
 	reg [2:0] alu_op;
 	wire [15:0] alu_out;
 	reg [15:0] alu_expected;
-	ALU ALU(.input_a(alu_input_a), .input_b(alu_input_b), .alu_op(alu_op), .result(alu_out));
+	ALU ALU(.input_a(alu_inputs[31:16]), .input_b(alu_inputs[15:0]), .alu_op(alu_op), .result(alu_out));
 	
 	// Multiplexer
 	reg [15:0] SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G;
@@ -103,7 +102,7 @@ module components_tb;
 			#1
 			if (count < 5) begin
 				case (count)
-					0: begin 
+					0: begin
 						tick_rst <= 1;
 						tick_enable <= 0;
 						tick_expected <= 4'b0001;
@@ -135,7 +134,32 @@ module components_tb;
 	
 	// ALU testcases
 	always begin
+		#1
+		if (count < 4) begin
+			0: begin
+				alu_op = 4'b0000;
+			end
+			
+			1: begin
+				alu_op = 4'b0001;
+			end
+			
+			2: begin
+				alu_op = 4'b0010;
+			end
+			
+			3: begin
+				alu_op = 4'b0011;
+			end
+			
+			if (alu_inputs == {32{1'b1}}) begin
+				alu_inputs = {32{1'b0}};
+			end
+			
+			alu_inputs <= alu_inputs + 1;
+		end
 		
+		#9
 	end
 	
 	// Multiplexer testcases
