@@ -214,7 +214,9 @@ module components_tb;
 					alu_op = 3'b001;
 					alu_inputs = {16'd0, 16'd0};
 					alu_expected = 16'd0;
-					
+				
+				end
+
 				7: begin 
 					// neg + pos = 0
 					alu_op = 3'b001;
@@ -330,10 +332,23 @@ module components_tb;
 					alu_inputs = {16'd3, 16'd4};
 					alu_expected = 16'd0;	
 				
+				end
 			endcase
+			
+			#8;
+			
+			if(alu_out !== alu_expected) begin
+				$display("ALU error at test %0d: Op=%b, input_A=%0d, input_B=%0d    Output: %0d, Expected: %0d", count, alu_op, $signed(alu_inputs[31:16]), $signed(alu_inputs[15:0]), $signed(alu_inputs[15:0]), $signed(alu_out), $signed(alu_expected));
+				
+				errors = errors + 1;
+			
+			end
+		end
+		else begin
+			#8;
 		end
 		
-		#9;
+		#1;
 	end
 	
 	// Multiplexer testcases
