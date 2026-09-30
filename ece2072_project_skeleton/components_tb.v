@@ -145,7 +145,11 @@ module components_tb;
 		#1
 		if (count < 4) begin
 			case (count)
+			
+				// MULTIPLICATION
+				
 				0: begin
+					// normal multiplication
 					alu_op = 3'b000;
 					alu_inputs = {16'd6, 16'd10};
 					alu_expected = 16'd60;
@@ -153,23 +157,168 @@ module components_tb;
 				end
 				
 				1: begin
-					alu_op = 3'b001;
-					alu_inputs = {16'd10, 16'd20};
-					alu_expected = 16'd30;
-					
+					// zero multiplication
+					alu_op = 3'b000;
+					alu_inputs = {16'd32, 16'd0};
+					alu_expected = 16'd0;
+				
 				end
 				
 				2: begin
-					alu_op = 3'b010;
-					alu_inputs = {16'd17, 16'd50};
-					alu_expected = -16'd33;
+					// negative multiplication
+					alu_op = 3'b000;
+					alu_inputs = {-16'd5, 16'd2};
+					alu_expected = -16'd10;
+				
 				end
 				
 				3: begin
-					alu_op = 3'b011;
-					alu_inputs = {16'd2, 16'hFFF0};
-					alu_expected = -16'hFFFC;
+					// negative on negative multiplication
+					alu_op = 3'b000;
+					alu_inputs = {-16'd5, -16'd2};
+					alu_expected = 16'd10;	
+				
 				end
+				
+				4: begin
+					// overflow, truncates to 1
+					alu_op = 3'b000;
+					alu_inputs = {16'd32767, 16'd32767};
+					alu_expected = 16'd1;			
+				
+				end
+				
+				// ADDITION
+					
+				5: begin
+					// normal addition
+					alu_op = 3'b001;
+					alu_inputs = {16'd6, 16'd7};
+					alu_expected = 16'd13;	
+				
+				end
+				
+				6: begin
+					// zero + zero
+					alu_op = 3'b001;
+					alu_inputs = {16'd0, 16'd0};
+					alu_expected = 16'd0;
+					
+				7: begin 
+					// neg + pos = 0
+					alu_op = 3'b001;
+					alu_inputs = {-16'd1, 16'd1};
+					alu_expected = 16'd0;
+				
+				end
+				
+				8: begin
+					// maximum value +1 =  min
+					alu_op = 3'b001;
+					alu_inputs = {16'd32767, 16'd1};
+					alu_expected = 16'd32768;
+				
+				end
+				
+				9: begin
+					// min value -1 = max
+					alu_op = 3'b001;
+					alu_inputs = {16'd32768, -16'd1};
+					alu_expected = 16'd32767;	
+				
+				end
+				
+				10: begin
+					// min + min = 0
+					alu_op = 3'b001;
+					alu_inputs = {16'd32768, 16'd32768};
+					alu_expected = 16'd0;
+				
+				end
+				
+				// SUBTRACTION
+				
+				11: begin
+					// normal subtraction
+					alu_op = 3'b010;
+					alu_inputs = {16'd17, 16'd10};
+					alu_expected = 16'd7;
+					
+				end
+				
+				12: begin
+					// net 0
+					alu_op = 3'b010;
+					alu_inputs = {16'd20, 16'd20};
+					alu_expected = 16'd0;					
+									
+				end
+				
+				13: begin
+					// 0 - number = - number
+					alu_op = 3'b010;
+					alu_inputs = {16'd0, 16'd200};
+					alu_expected = -16'd200;
+
+				end
+				
+				14: begin
+					// 0 - min = min
+					alu_op = 3'b010;
+					alu_inputs = {16'd0, 16'd32768};
+					alu_expected = -16'd32768;		
+		
+				end
+				
+				15: begin
+					// minus minus = pos
+					alu_op = 3'b010;
+					alu_inputs = {16'd5, -16'd2};
+					alu_expected = 16'd7;		
+				
+				end
+				
+				// SHIFTING
+				
+				16: begin
+					// shifts by 0
+					alu_op = 3'b011;
+					alu_inputs = {16'd0, 16'd100};
+					alu_expected = 16'd100;	
+				
+				end
+				
+				17: begin
+					// shifts by 1
+					alu_op = 3'b011;
+					alu_inputs = {16'd1, -16'd16};
+					alu_expected = -16'd8;	
+				
+				end
+				
+				
+				18: begin
+					// -1 shifts 4 = -1
+					alu_op = 3'b011;
+					alu_inputs = {16'd4, -16'd1};
+					alu_expected = -16'd1;	
+				
+				end
+				
+				19: begin
+					// 1 shifts -15 = min
+					alu_op = 3'b011;
+					alu_inputs = {-16'd15, 16'd1};
+					alu_expected = -16'd32768;	
+				
+				end
+				
+				20: begin
+					// shifts 4 by 3 to make 0
+					alu_op = 3'b011;
+					alu_inputs = {16'd3, 16'd4};
+					alu_expected = 16'd0;	
+				
 			endcase
 		end
 		
