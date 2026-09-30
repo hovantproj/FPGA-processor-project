@@ -337,6 +337,22 @@ module components_tb;
 					alu_expected = 16'd0;	
 				
 				end
+				
+				21: begin
+					//check irrelevant OPcodes
+					alu_op = 3'b100;
+					alu_inputs = {16'd3, 16'd4};
+					alu_expected = 16'd0;	
+				
+				end
+				
+				22: begin
+					//check irrelevant OPcodes
+					alu_op = 3'b111;
+					alu_inputs = {16'd3, 16'd4};
+					alu_expected = 16'd0;	
+		
+				end
 			endcase
 			
 			#8;

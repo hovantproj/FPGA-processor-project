@@ -1,5 +1,9 @@
 Flow report for FPGA-processor
+<<<<<<< HEAD
 Wed Sep 30 15:46:19 2026
+=======
+Wed Sep 30 16:52:58 2026
+>>>>>>> a6c92e5db498c98ed0fde8180ae83dfc8b35d8dc
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,7 +44,11 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
+<<<<<<< HEAD
 ; Flow Status                        ; Flow Failed - Wed Sep 30 15:46:19 2026      ;
+=======
+; Flow Status                        ; Flow Failed - Wed Sep 30 16:52:58 2026      ;
+>>>>>>> a6c92e5db498c98ed0fde8180ae83dfc8b35d8dc
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; FPGA-processor                              ;
 ; Top-level Entity Name              ; FPGA-processor                              ;
@@ -66,7 +74,11 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
+<<<<<<< HEAD
 ; Start date & time ; 09/30/2026 15:46:12 ;
+=======
+; Start date & time ; 09/30/2026 16:52:29 ;
+>>>>>>> a6c92e5db498c98ed0fde8180ae83dfc8b35d8dc
 ; Main task         ; Compilation         ;
 ; Revision Name     ; FPGA-processor      ;
 +-------------------+---------------------+
@@ -77,7 +89,11 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
+<<<<<<< HEAD
 ; COMPILER_SIGNATURE_ID               ; 10995770589198.179074717230964         ; --            ; --          ; --         ;
+=======
+; COMPILER_SIGNATURE_ID               ; 121383090718.179075114910180           ; --            ; --          ; --         ;
+>>>>>>> a6c92e5db498c98ed0fde8180ae83dfc8b35d8dc
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
@@ -94,8 +110,8 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:08     ; 1.0                     ; 4713 MB             ; 00:00:15                           ;
-; Total                ; 00:00:08     ; --                      ; --                  ; 00:00:15                           ;
+; Analysis & Synthesis ; 00:00:30     ; 1.0                     ; 13185 MB            ; 00:00:49                           ;
+; Total                ; 00:00:30     ; --                      ; --                  ; 00:00:49                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -104,7 +120,7 @@ refer to the applicable agreement for further details.
 +----------------------+------------------+------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; Hovan_Surface    ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Synthesis ; PHILOLEEE08A     ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
