@@ -85,8 +85,8 @@ module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G, sel, Bus);
 			4'b0101: Bus = R5;
 			4'b0110: Bus = R6;
 			4'b0111: Bus = R7;
-			4'b1000: Bus = SignExtDin;
-			4'b1001: Bus = G;
+			4'b1000: Bus = G;
+			4'b1001: Bus = SignExtDin;
 			default: Bus = 16'd0;
 		endcase
 	end
@@ -139,13 +139,13 @@ module register_n(data_in, r_in, clk, Q, rst);
 	
 	// waits for clock tick to begin
 	always @(posedge clk) begin
-		if (r_in) begin
-			Q <= data_in;
-		end
-		
 		if(rst) begin
 			// clears register if rst requested
 			Q <= {N{1'b0}};
+		end
+		
+		else if (r_in) begin
+			Q <= data_in;
 		end
 		
 		else begin
