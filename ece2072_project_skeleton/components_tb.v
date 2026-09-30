@@ -78,16 +78,16 @@ module components_tb;
 		if (count < 3) begin
 			case (count)
 				0: begin
-					sign_ext_in <= {9{1'b0}};
-					sign_ext_expected <= {16{1'b0}};
+					sign_ext_in = {9{1'b0}};
+					sign_ext_expected = {16{1'b0}};
 				end
 				1: begin
-					sign_ext_in <= {9{1'b1}};
-					sign_ext_expected <= {16{1'b1}};
+					sign_ext_in = {9{1'b1}};
+					sign_ext_expected = {16{1'b1}};
 				end
 				2: begin
-					sign_ext_in <= 9'b101010101;
-					sign_ext_expected <= 16'b1111111101010101;
+					sign_ext_in = 9'b101010101;
+					sign_ext_expected = 16'b1111111101010101;
 				end
 			endcase
 
@@ -100,10 +100,10 @@ module components_tb;
 		end
 		
 		else begin
-			#8 // So that its consistent 10ns (1 + 8 + 1)
+			#8; // So that its consistent 10ns (1 + 8 + 1)
 		end
 		
-		#1
+		#1;
 	end
 	
 	// Tick FSM testcases
@@ -135,9 +135,20 @@ module components_tb;
 					tick_expected <= 4'b0001;
 				end
 			endcase
+			
+			#8
+			
+			if (tick_out !== tick_expected) begin
+				$display("Tick FSM error: Output: %d, Expected state: %d", tick_out, tick_expected);
+				errors = errors + 1;
+			end
 		end
 		
-		#9;
+		else begin
+			#8;
+		end
+		
+		#1;
 	end
 	
 	// ALU testcases
@@ -179,17 +190,30 @@ module components_tb;
 	// Multiplexer testcases
 	always begin
 		#1
-		if (count < 10) begin
-			sel = count;
-			mult_expected = count;
+		if (count == 11) begin
+			if (count < 10) begin
+				sel = count;
+				mult_expected = count;
+			end
+			
+			else if (count == 11) begin
+				sel = 16'd11;
+				mult_expected = 16'd0;
+			end
+			
+			#8
+			
+			if (mult_out !== mult_expected) begin
+				$display("Multiplexer error: Sel: %d, Output: %d, Expected: %d", sel, mult_out, mult_expected);
+				errors = errors + 1;
+			end
 		end
 		
-		else if (count == 11) begin
-			sel = 16'd11;
-			mult_expected = 16'd0;
+		else begin
+			#8;
 		end
 		
-		#9;
+		#1;
 	end
 	
 	// Register testcases
@@ -198,7 +222,7 @@ module components_tb;
 		if (count < 6) begin
 			case (count)
 				0: begin
-					reg_rst <= 1;
+					reg_rst = 1;
 					reg_data_in16 <= {16{1'b1}};
 					reg_data_in32 <= {32{1'b1}};
 					reg_expected16 <= {16{1'b0}};
@@ -228,21 +252,30 @@ module components_tb;
 					reg_expected32 <= {32{1'b1}};
 				end
 			endcase
+			
+			if (reg_out16 !== reg_expected16) begin
+				$display("16 bit register error: Inputs: %d, Output: %d, Expected state: %d", reg_data_in16, reg_out16, reg_expected16);
+				errors = errors + 1;
+			end
+			
+			else if (reg_out32 !== reg_expected32) begin
+				$display("32 bit register error: Inputs: %d, Output: %d, Expected state: %d", reg_data_in32, reg_out32, reg_expected32);
+				errors = errors + 1;
+			end
+			
+			#8;
 		end
+		
+		else begin
+			#8;
+		end
+		
+		#1;
 	end
-	
-	// Check tick fsm
-	
-	// Checj alu
-	
-	// Check multiplexer
-	
-	// Check registers
 	
 	
 	always begin // Need to increment count, having it in each would screw it up
 		#10
 		count = count + 1;
 	end
-	
 endmodule
