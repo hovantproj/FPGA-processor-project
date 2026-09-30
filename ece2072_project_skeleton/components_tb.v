@@ -373,7 +373,7 @@ module components_tb;
 					//check irrelevant OPcodes
 					alu_op = 3'b111;
 					alu_input_a = 16'd3;
-					alu_input_a = 16'd4;
+					alu_input_b = 16'd4;
 					alu_expected = 16'd0;	
 		
 				end

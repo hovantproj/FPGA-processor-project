@@ -12,17 +12,17 @@
 # 
 # vlog -vlog01compat -work work +incdir+C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton {C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 22:13:22 on Sep 30,2026
+# Start time: 22:43:17 on Sep 30,2026
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton" C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v 
 # -- Compiling module components_tb
 # 
 # Top level modules:
 # 	components_tb
-# End time: 22:13:22 on Sep 30,2026, Elapsed time: 0:00:00
+# End time: 22:43:17 on Sep 30,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton {C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 22:13:22 on Sep 30,2026
+# Start time: 22:43:17 on Sep 30,2026
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton" C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v 
 # -- Compiling module sign_extend
 # -- Compiling module tick_FSM
@@ -36,32 +36,59 @@
 # 	multiplexer
 # 	ALU
 # 	register_n
-# End time: 22:13:22 on Sep 30,2026, Elapsed time: 0:00:00
+# End time: 22:43:17 on Sep 30,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 vsim work.components_tb
 # vsim work.components_tb 
-# Start time: 22:15:31 on Sep 30,2026
+# Start time: 22:43:21 on Sep 30,2026
 # Loading work.components_tb
 # Loading work.sign_extend
 # Loading work.tick_FSM
 # Loading work.ALU
 # Loading work.multiplexer
 # Loading work.register_n
-# ** Warning: (vsim-3015) C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v(32): [PCDPC] - Port size (16) does not match connection size (32) for port 'input_a'. The port definition is at: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v(96).
-#    Time: 0 ns  Iteration: 0  Instance: /components_tb/ALU File: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v
-# ** Warning: (vsim-3015) C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v(32): [PCDPC] - Port size (16) does not match connection size (32) for port 'input_b'. The port definition is at: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v(96).
-#    Time: 0 ns  Iteration: 0  Instance: /components_tb/ALU File: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v
-add wave -position end  sim:/components_tb/errors
-add wave -position end  sim:/components_tb/count
+add wave -position end  sim:/components_tb/sign_ext_in
+add wave -position end  sim:/components_tb/sign_ext_out
+add wave -position end  sim:/components_tb/sign_ext_expected
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
 #           File in use by: hovan  Hostname: HOVAN_SURFACE  ProcessID: 5096
-#           Attempting to use alternate WLF file "./wlftwxf8vt".
+#           Attempting to use alternate WLF file "./wlftms6sv9".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftwxf8vt
+#           Using alternate file: ./wlftms6sv9
 run -all
-# ALU error: ALU_op: 011, Input_A:           4, Input_B:           1, Output:      0, Expected:     -1
-# Failed: got           1 errors
+# 16 bit register error: Inputs: 65535, Output:     0, Expected state: 65535
+# 32 bit register error: Inputs: 4294967295, Output:          0, Expected state: 4294967295
+# 16 bit register error: Inputs:   412, Output:     0, Expected state:   412
+# 32 bit register error: Inputs:     200000, Output:          0, Expected state:     200000
+# 16 bit register error: Inputs:   100, Output:     0, Expected state:   412
+# 32 bit register error: Inputs:        100, Output:          0, Expected state:     200000
+# Multiplexer error: Sel:  8, Output:     9, Expected:     8
+# Multiplexer error: Sel:  9, Output:     8, Expected:     9
+# ALU error: ALU_op: 011, Input_A:      4, Input_B:      1, Output:      0, Expected:     -1
+# Failed: got           9 errors
+# ** Note: $finish    : C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v(505)
+#    Time: 230 ns  Iteration: 0  Instance: /components_tb
+# 1
+# Break in Module components_tb at C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v line 505
+add wave -position end  sim:/components_tb/sel
+add wave -position end  sim:/components_tb/mult_out
+add wave -position end  sim:/components_tb/mult_expected
+run -all
+# Break key hit
+# Break in Module components_tb at C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v line 427
+restart -f
+run -all
+# 16 bit register error: Inputs: 65535, Output:     0, Expected state: 65535
+# 32 bit register error: Inputs: 4294967295, Output:          0, Expected state: 4294967295
+# 16 bit register error: Inputs:   412, Output:     0, Expected state:   412
+# 32 bit register error: Inputs:     200000, Output:          0, Expected state:     200000
+# 16 bit register error: Inputs:   100, Output:     0, Expected state:   412
+# 32 bit register error: Inputs:        100, Output:          0, Expected state:     200000
+# Multiplexer error: Sel:  8, Output:     9, Expected:     8
+# Multiplexer error: Sel:  9, Output:     8, Expected:     9
+# ALU error: ALU_op: 011, Input_A:      4, Input_B:      1, Output:      0, Expected:     -1
+# Failed: got           9 errors
 # ** Note: $finish    : C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v(505)
 #    Time: 230 ns  Iteration: 0  Instance: /components_tb
 # 1
@@ -77,35 +104,50 @@ add wave -position end  sim:/components_tb/reg_out32
 add wave -position end  sim:/components_tb/reg_expected32
 run -all
 # Break key hit
-# Break in Module components_tb at C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v line 77
+# Break in Module tick_FSM at C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v line 38
 restart -f
-# ** Warning: (vsim-3015) C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v(32): [PCDPC] - Port size (16) does not match connection size (32) for port 'input_a'. The port definition is at: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v(96).
-#    Time: 0 ns  Iteration: 0  Instance: /components_tb/ALU File: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v
-# ** Warning: (vsim-3015) C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v(32): [PCDPC] - Port size (16) does not match connection size (32) for port 'input_b'. The port definition is at: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v(96).
-#    Time: 0 ns  Iteration: 0  Instance: /components_tb/ALU File: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v
+# **** Error: RestartPrepQ cmd: namespace inscope ::vsimwidgets::Srcobj {::.main_pane.source.interior.cs.body.srcobj RestartPrepCB} sim
+# ****        invalid command name "::.main_pane.source.interior.cs.body.srcobj"
+# invalid command name "::.main_pane.source.interior.cs.body.srcobj"
+#     while executing
+# "::.main_pane.source.interior.cs.body.srcobj RestartPrepCB sim"
+#     (in namespace inscope "::vsimwidgets::Srcobj" script line 1)
+#     invoked from within
+# "namespace inscope ::vsimwidgets::Srcobj {::.main_pane.source.interior.cs.body.srcobj RestartPrepCB} sim"
+#     ("eval" body line 1)
+#     invoked from within
+# "eval $p $tankNamespace "
 run -all
-# ALU error: ALU_op: 011, Input_A:           4, Input_B:           1, Output:      0, Expected:     -1
-# Failed: got           1 errors
+# 16 bit register error: Inputs: 65535, Output:     0, Expected state: 65535
+# 32 bit register error: Inputs: 4294967295, Output:          0, Expected state: 4294967295
+# 16 bit register error: Inputs:   412, Output:     0, Expected state:   412
+# 32 bit register error: Inputs:     200000, Output:          0, Expected state:     200000
+# 16 bit register error: Inputs:   100, Output:     0, Expected state:   412
+# 32 bit register error: Inputs:        100, Output:          0, Expected state:     200000
+# Multiplexer error: Sel:  8, Output:     9, Expected:     8
+# Multiplexer error: Sel:  9, Output:     8, Expected:     9
+# ALU error: ALU_op: 011, Input_A:      4, Input_B:      1, Output:      0, Expected:     -1
+# Failed: got           9 errors
 # ** Note: $finish    : C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v(505)
 #    Time: 230 ns  Iteration: 0  Instance: /components_tb
 # 1
 # Break in Module components_tb at C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v line 505
 # Break key hit
 restart -f
-# ** Warning: (vsim-3015) C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v(32): [PCDPC] - Port size (16) does not match connection size (32) for port 'input_a'. The port definition is at: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v(96).
-#    Time: 0 ns  Iteration: 0  Instance: /components_tb/ALU File: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v
-# ** Warning: (vsim-3015) C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v(32): [PCDPC] - Port size (16) does not match connection size (32) for port 'input_b'. The port definition is at: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v(96).
-#    Time: 0 ns  Iteration: 0  Instance: /components_tb/ALU File: C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v
-add wave -position end  sim:/components_tb/alu_input_a
-add wave -position end  sim:/components_tb/alu_input_b
-add wave -position end  sim:/components_tb/alu_op
-add wave -position end  sim:/components_tb/alu_out
-add wave -position end  sim:/components_tb/alu_expected
+add wave -position end  sim:/components_tb/errors
+add wave -position end  sim:/components_tb/count
 run -all
-# ALU error: ALU_op: 011, Input_A:           4, Input_B:           1, Output:      0, Expected:     -1
-# Failed: got           1 errors
+# 16 bit register error: Inputs: 65535, Output:     0, Expected state: 65535
+# 32 bit register error: Inputs: 4294967295, Output:          0, Expected state: 4294967295
+# 16 bit register error: Inputs:   412, Output:     0, Expected state:   412
+# 32 bit register error: Inputs:     200000, Output:          0, Expected state:     200000
+# 16 bit register error: Inputs:   100, Output:     0, Expected state:   412
+# 32 bit register error: Inputs:        100, Output:          0, Expected state:     200000
+# Multiplexer error: Sel:  8, Output:     9, Expected:     8
+# Multiplexer error: Sel:  9, Output:     8, Expected:     9
+# ALU error: ALU_op: 011, Input_A:      4, Input_B:      1, Output:      0, Expected:     -1
+# Failed: got           9 errors
 # ** Note: $finish    : C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v(505)
 #    Time: 230 ns  Iteration: 0  Instance: /components_tb
 # 1
 # Break in Module components_tb at C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v line 505
-add wave -position end  sim:/components_tb/count
