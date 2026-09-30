@@ -159,15 +159,8 @@ module components_tb;
 					alu_op = 3'b011;
 					alu_inputs = {16'd2, 16'hFFF0};
 					alu_expected = -16'hFFFC;
-					
 				end
 			endcase
-			
-			if (alu_inputs == {32{1'b1}}) begin
-				alu_inputs = {32{1'b0}};
-			end
-			
-			alu_inputs <= alu_inputs + 1;
 		end
 		
 		#9;
