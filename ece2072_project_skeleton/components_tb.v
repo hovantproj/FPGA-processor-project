@@ -24,8 +24,8 @@ module components_tb;
 	tick_FSM tick_FSM(.rst(tick_rst), .clk(tick_clk), .enable(tick_enable), .tick(tick_out));
 	
 	// ALU
-	reg [31:0] alu_input_a = {16{1'b0}};
-	reg [31:0] alu_input_b = {16{1'b0}};
+	reg [15:0] alu_input_a = {16{1'b0}};
+	reg [15:0] alu_input_b = {16{1'b0}};
 	reg [2:0] alu_op;
 	wire [15:0] alu_out;
 	reg [15:0] alu_expected;
@@ -176,8 +176,8 @@ module components_tb;
 				1: begin
 					// zero multiplication
 					alu_op = 3'b000;
-					alu_inputs_a = 16'd32;
-					alu_inputs_b = 16'd0;
+					alu_input_a = 16'd32;
+					alu_input_b = 16'd0;
 					alu_expected = 16'd0;
 				
 				end
@@ -185,8 +185,8 @@ module components_tb;
 				2: begin
 					// negative multiplication
 					alu_op = 3'b000;
-					alu_inputs_a = -16'd5;
-					alu_inputs_b = 16'd2;					
+					alu_input_a = -16'd5;
+					alu_input_b = 16'd2;					
 					alu_expected = -16'd10;
 				
 				end
@@ -194,8 +194,8 @@ module components_tb;
 				3: begin
 					// negative on negative multiplication
 					alu_op = 3'b000;
-					alu_inputs_a = -16'd5;
-					alu_inputs_b = -16'd2;				
+					alu_input_a = -16'd5;
+					alu_input_b = -16'd2;				
 					alu_expected = 16'd10;	
 				
 				end
@@ -203,8 +203,8 @@ module components_tb;
 				4: begin
 					// overflow, truncates to 1
 					alu_op = 3'b000;
-					alu_inputs_a = 16'd32767;
-					alu_inputs_b = 16'd32767;	
+					alu_input_a = 16'd32767;
+					alu_input_b = 16'd32767;	
 					alu_expected = 16'd1;			
 				
 				end
@@ -214,8 +214,8 @@ module components_tb;
 				5: begin
 					// normal addition
 					alu_op = 3'b001;
-					alu_inputs_a = 16'd6;
-					alu_inputs_b = 16'd7;	
+					alu_input_a = 16'd6;
+					alu_input_b = 16'd7;	
 					alu_expected = 16'd13;	
 				
 				end
@@ -223,8 +223,8 @@ module components_tb;
 				6: begin
 					// zero + zero
 					alu_op = 3'b001;
-					alu_inputs_a = 16'd0;
-					alu_inputs_b = 16'd0;	
+					alu_input_a = 16'd0;
+					alu_input_b = 16'd0;	
 					alu_expected = 16'd0;
 				
 				end
@@ -232,8 +232,8 @@ module components_tb;
 				7: begin 
 					// neg + pos = 0
 					alu_op = 3'b001;
-					alu_inputs_a = -16'd1;
-					alu_inputs_b = 16'd1;	
+					alu_input_a = -16'd1;
+					alu_input_b = 16'd1;	
 					alu_expected = 16'd0;
 				
 				end
@@ -241,8 +241,8 @@ module components_tb;
 				8: begin
 					// maximum value +1 =  min
 					alu_op = 3'b001;
-					alu_inputs_a = 16'd32767;
-					alu_inputs_b = 16'd1;
+					alu_input_a = 16'd32767;
+					alu_input_b = 16'd1;
 					alu_expected = 16'd32768;
 				
 				end
@@ -250,8 +250,8 @@ module components_tb;
 				9: begin
 					// min value -1 = max
 					alu_op = 3'b001;
-					alu_inputs_a = 16'd32768;
-					alu_inputs_b = -16'd1;
+					alu_input_a = 16'd32768;
+					alu_input_b = -16'd1;
 					alu_expected = 16'd32767;	
 				
 				end
@@ -259,8 +259,8 @@ module components_tb;
 				10: begin
 					// min + min = 0
 					alu_op = 3'b001;
-					alu_inputs_a = 16'd32768;
-					alu_inputs_b = 16'd32768;
+					alu_input_a = 16'd32768;
+					alu_input_b = 16'd32768;
 					alu_expected = 16'd0;
 				
 				end
@@ -270,8 +270,8 @@ module components_tb;
 				11: begin
 					// normal subtraction
 					alu_op = 3'b010;
-					alu_inputs_a = 16'd17;
-					alu_inputs_b = 16'd10;
+					alu_input_a = 16'd17;
+					alu_input_b = 16'd10;
 					alu_expected = 16'd7;
 					
 				end
@@ -279,8 +279,8 @@ module components_tb;
 				12: begin
 					// net 0
 					alu_op = 3'b010;
-					alu_inputs_a = 16'd20;
-					alu_inputs_b = 16'd20;
+					alu_input_a = 16'd20;
+					alu_input_b = 16'd20;
 					alu_expected = 16'd0;					
 									
 				end
@@ -288,8 +288,8 @@ module components_tb;
 				13: begin
 					// 0 - number = - number
 					alu_op = 3'b010;
-					alu_inputs_a = 16'd0;
-					alu_inputs_b = 16'd200;
+					alu_input_a = 16'd0;
+					alu_input_b = 16'd200;
 					alu_expected = -16'd200;
 
 				end
@@ -307,7 +307,7 @@ module components_tb;
 					// minus minus = pos
 					alu_op = 3'b010;
 					alu_input_a = 16'd5;
-					alu_input_b-16'd2};
+					alu_input_b = -16'd2;
 					alu_expected = 16'd7;		
 				
 				end
@@ -326,8 +326,8 @@ module components_tb;
 				17: begin
 					// shifts by 1
 					alu_op = 3'b011;
-					alu_input_a = s16'd1;
-					alu_input_b = -16'd16};
+					alu_input_a = 16'd1;
+					alu_input_b = -16'd16;
 					alu_expected = -16'd8;	
 				
 				end
@@ -346,7 +346,7 @@ module components_tb;
 					// 1 shifts -15 = min
 					alu_op = 3'b011;
 					alu_input_a = -16'd15;
-					alu_input_b = 16'd1};
+					alu_input_b = 16'd1;
 					alu_expected = -16'd32768;	
 				
 				end
@@ -373,7 +373,7 @@ module components_tb;
 					//check irrelevant OPcodes
 					alu_op = 3'b111;
 					alu_input_a = 16'd3;
-					alu_input_a = 16'd4
+					alu_input_a = 16'd4;
 					alu_expected = 16'd0;	
 		
 				end
@@ -382,7 +382,7 @@ module components_tb;
 			#8;
 			
 			if(alu_out !== alu_expected) begin
-				$display("ALU error: ALU_op: %b, Input_A: %d, Input_B: %d, Output: %d, Expected: %d", alu_op, $signed(alu_inputs[31:16]), $signed(alu_inputs[15:0]), $signed(alu_out), $signed(alu_expected));
+				$display("ALU error: ALU_op: %b, Input_A: %d, Input_B: %d, Output: %d, Expected: %d", alu_op, $signed(alu_input_a), $signed(alu_input_b), $signed(alu_out), $signed(alu_expected));
 				errors = errors + 1;
 			
 			end

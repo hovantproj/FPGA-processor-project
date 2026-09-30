@@ -24,9 +24,9 @@ endmodule
 
 module tick_FSM(rst, clk, enable, tick);
 	/* 
-	 This module implements a tick FSM that will be used to
-	 control the actions of the control unit, uses one hot encoding
-	 */
+	This module implements a tick FSM that will be used to
+	control the actions of the control unit, uses one hot encoding
+	*/
 
 	input rst;
 	input clk;
@@ -58,8 +58,8 @@ endmodule
 
 module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G, sel, Bus);
 	/* 
-	 This module takes 10 inputs and places the selected input onto the bus
-	 */
+	This module takes 10 inputs and places the selected input onto the bus
+	*/
 	input [15:0] R0;
 	input [15:0] R1;
 	input [15:0] R2;
@@ -77,17 +77,17 @@ module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G, sel, Bus);
 	always @(*) begin
 		case(sel)
 			// Only need 10 cases since 10 inputs
-			4'b0000: Bus <= R0;
-			4'b0001: Bus <= R1;
-			4'b0010: Bus <= R2;
-			4'b0011: Bus <= R3;
-			4'b0100: Bus <= R4;
-			4'b0101: Bus <= R5;
-			4'b0110: Bus <= R6;
-			4'b0111: Bus <= R7;
-			4'b1000: Bus <= G;
-			4'b1001: Bus <= SignExtDin;
-			default: Bus <= 16'd0;
+			4'b0000: Bus = R0;
+			4'b0001: Bus = R1;
+			4'b0010: Bus = R2;
+			4'b0011: Bus = R3;
+			4'b0100: Bus = R4;
+			4'b0101: Bus = R5;
+			4'b0110: Bus = R6;
+			4'b0111: Bus = R7;
+			4'b1000: Bus = SignExtDin;
+			4'b1001: Bus = G;
+			default: Bus = 16'd0;
 		endcase
 	end
 endmodule
@@ -139,13 +139,13 @@ module register_n(data_in, r_in, clk, Q, rst);
 	
 	// waits for clock tick to begin
 	always @(posedge clk) begin
-		// clears register if rst requested
-		if(rst) begin
-			Q <= {N{1'b0}};
+		if (r_in) begin
+			Q <= data_in;
 		end
 		
-		else if (r_in) begin
-			Q <= data_in;
+		if(rst) begin
+			// clears register if rst requested
+			Q <= {N{1'b0}};
 		end
 		
 		else begin
