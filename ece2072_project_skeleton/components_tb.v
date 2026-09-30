@@ -284,7 +284,8 @@ module components_tb;
 				14: begin
 					// 0 - min = min
 					alu_op = 3'b010;
-					alu_inputs = {16'd0, 16'd32768};
+					alu_input_a = 16'd0; 
+					alu_input_b = 16'd32768;
 					alu_expected = -16'd32768;		
 		
 				end
@@ -292,7 +293,8 @@ module components_tb;
 				15: begin
 					// minus minus = pos
 					alu_op = 3'b010;
-					alu_inputs = {16'd5, -16'd2};
+					alu_input_a = 16'd5;
+					alu_input_b-16'd2};
 					alu_expected = 16'd7;		
 				
 				end
@@ -302,7 +304,8 @@ module components_tb;
 				16: begin
 					// shifts by 0
 					alu_op = 3'b011;
-					alu_inputs = {16'd0, 16'd100};
+					alu_input_a = 16'd0;
+					alu_input_b = 16'd100;
 					alu_expected = 16'd100;	
 				
 				end
@@ -310,7 +313,8 @@ module components_tb;
 				17: begin
 					// shifts by 1
 					alu_op = 3'b011;
-					alu_inputs = {16'd1, -16'd16};
+					alu_input_a = s16'd1;
+					alu_input_b = -16'd16};
 					alu_expected = -16'd8;	
 				
 				end
@@ -319,7 +323,8 @@ module components_tb;
 				18: begin
 					// -1 shifts 4 = -1
 					alu_op = 3'b011;
-					alu_inputs = {16'd4, -16'd1};
+					alu_input_a = 16'd4;
+					alu_input_b = 16'd1;
 					alu_expected = -16'd1;	
 				
 				end
@@ -327,7 +332,8 @@ module components_tb;
 				19: begin
 					// 1 shifts -15 = min
 					alu_op = 3'b011;
-					alu_inputs = {-16'd15, 16'd1};
+					alu_input_a = -16'd15;
+					alu_input_b = 16'd1};
 					alu_expected = -16'd32768;	
 				
 				end
@@ -335,7 +341,8 @@ module components_tb;
 				20: begin
 					// shifts 4 by 3 to make 0
 					alu_op = 3'b011;
-					alu_inputs = {16'd3, 16'd4};
+					alu_input_a = 16'd3;
+					alu_input_b = 16'd4;
 					alu_expected = 16'd0;	
 				
 				end
@@ -343,7 +350,8 @@ module components_tb;
 				21: begin
 					//check irrelevant OPcodes
 					alu_op = 3'b100;
-					alu_inputs = {16'd3, 16'd4};
+					alu_input_a = 16'd3;
+					alu_input_b = 16'd4;
 					alu_expected = 16'd0;	
 				
 				end
@@ -351,7 +359,8 @@ module components_tb;
 				22: begin
 					//check irrelevant OPcodes
 					alu_op = 3'b111;
-					alu_inputs = {16'd3, 16'd4};
+					alu_input_a = 16'd3;
+					alu_input_a = 16'd4
 					alu_expected = 16'd0;	
 		
 				end
