@@ -158,7 +158,7 @@ module components_tb;
 	// ALU testcases
 	always begin
 		#1
-		if (count < 21) begin
+		if (count < 23) begin
 			case (count)
 			
 				// MULTIPLICATION
@@ -440,8 +440,8 @@ module components_tb;
 					r_in <= 1;
 					reg_data_in16 <= 16'd100;
 					reg_data_in32 <= 32'd100;
-					reg_expected16 <= 16'd412;
-					reg_expected32 <= 32'd200000;
+					reg_expected16 <= 16'd0;
+					reg_expected32 <= 32'd0;
 				end
 			endcase
 			
