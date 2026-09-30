@@ -1,7 +1,7 @@
-Analysis & Synthesis Status : Failed - Wed Sep 30 16:52:58 2026
+Analysis & Elaboration Status : Successful - Wed Sep 30 17:19:40 2026
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : FPGA-processor
-Top-level Entity Name : FPGA-processor
+Top-level Entity Name : components_tb
 Family : MAX 10
 Total logic elements : N/A until Partition Merge
     Total combinational functions : N/A until Partition Merge
