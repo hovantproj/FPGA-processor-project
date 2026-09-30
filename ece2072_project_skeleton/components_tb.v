@@ -66,10 +66,14 @@ module components_tb;
 		r_in = 1;
 	end
 	
+	initial begin
+		
+	end
+	
 	always begin // 1 cycle every 10ns (5ns to go up, 5ns to go down)
+		#5;
 		tick_clk <= ~tick_clk;
 		reg_clk <= ~reg_clk;
-		#5;
 	end
 	
 	// Sign extender testcases
@@ -77,15 +81,15 @@ module components_tb;
 		#1			
 		if (count < 3) begin
 			case (count)
-				0: begin
+				0: begin // All 0s (should extend 0)
 					sign_ext_in = {9{1'b0}};
 					sign_ext_expected = {16{1'b0}};
 				end
-				1: begin
+				1: begin // All 1s (should extend 1)
 					sign_ext_in = {9{1'b1}};
 					sign_ext_expected = {16{1'b1}};
 				end
-				2: begin
+				2: begin // Arbitrary but sign is 1 so should extend 1
 					sign_ext_in = 9'b101010101;
 					sign_ext_expected = 16'b1111111101010101;
 				end
@@ -111,27 +115,27 @@ module components_tb;
 		#1
 		if (count < 5) begin
 			case (count)
-				0: begin
+				0: begin // Rst high so goes to 1st tick (0001)
 					tick_rst <= 1;
 					tick_enable <= 0;
 					tick_expected <= 4'b0001;
 				end
 				
-				1: begin
+				1: begin // 2nd tick
 					tick_rst <= 0;
 					tick_enable <= 1;
 					tick_expected <= 4'b0010;
 				end	
 				
-				2: begin
+				2: begin // 3rd tick
 					tick_expected <= 4'b0100;
 				end
 				
-				3: begin
+				3: begin // 4th tick
 					tick_expected <= 4'b1000;
 				end
 				
-				4: begin
+				4: begin // Keep ticking after 4th, should go back to 1st
 					tick_expected <= 4'b0001;
 				end
 			endcase
@@ -154,7 +158,7 @@ module components_tb;
 	// ALU testcases
 	always begin
 		#1
-		if (count < 4) begin
+		if (count < 21) begin
 			case (count)
 			
 				// MULTIPLICATION
@@ -338,8 +342,7 @@ module components_tb;
 			#8;
 			
 			if(alu_out !== alu_expected) begin
-				$display("ALU error at test %0d: Op=%b, input_A=%0d, input_B=%0d    Output: %0d, Expected: %0d", count, alu_op, $signed(alu_inputs[31:16]), $signed(alu_inputs[15:0]), $signed(alu_inputs[15:0]), $signed(alu_out), $signed(alu_expected));
-				
+				$display("ALU error: ALU_op: %b, Input_A: %d, Input_B: %d, Output: %d, Expected: %d", alu_op, $signed(alu_inputs[31:16]), $signed(alu_inputs[15:0]), $signed(alu_out), $signed(alu_expected));
 				errors = errors + 1;
 			
 			end
@@ -354,15 +357,14 @@ module components_tb;
 	// Multiplexer testcases
 	always begin
 		#1
-		if (count == 11) begin
-			if (count < 10) begin
-				sel = count;
-				mult_expected = count;
+		if (count <= 11) begin
+			sel = count;			
+			if (count == 10 || count == 11) begin // Test default
+				mult_expected = 16'd0;
 			end
 			
-			else if (count == 11) begin
-				sel = 16'd11;
-				mult_expected = 16'd0;
+			else begin
+				mult_expected = count; // Output should be the same as reg number (refer to declaration of module)
 			end
 			
 			#8
@@ -383,9 +385,9 @@ module components_tb;
 	// Register testcases
 	always begin
 		#1
-		if (count < 6) begin
+		if (count < 5) begin
 			case (count)
-				0: begin
+				0: begin // Rst = 1
 					reg_rst = 1;
 					reg_data_in16 <= {16{1'b1}};
 					reg_data_in32 <= {32{1'b1}};
@@ -394,7 +396,7 @@ module components_tb;
 				end
 				
 				1: begin
-					reg_rst <= 0;
+					reg_rst <= 0; // All 1s
 					r_in <= 1;
 					reg_data_in16 <= {16{1'b1}};
 					reg_data_in32 <= {32{1'b1}};
@@ -402,32 +404,42 @@ module components_tb;
 					reg_expected32 <= {32{1'b1}};
 				end
 				
-				2: begin
-					reg_data_in16 <= {16'd412};
-					reg_data_in32 <= {32'd200000};
-					reg_expected16 <= {32'd412};
-					reg_expected32 <= {32'd200000};
+				2: begin // Regular operation with arbitrary numbers
+					reg_data_in16 <= 16'd412;
+					reg_data_in32 <= 32'd200000;
+					reg_expected16 <= 16'd412;
+					reg_expected32 <= 32'd200000;
 				end
 				
-				3: begin
-					reg_data_in16 <= {16'd32382732636}; // Arbitrary number too big for 16
-					reg_data_in32 <= {32'd99123013812}; // Arbitrary number too big for 32
-					reg_expected16 <= {16{1'b1}};
-					reg_expected32 <= {32{1'b1}};
+				3: begin // Holds value
+					r_in <= 0;
+					reg_data_in16 <= 16'd100;
+					reg_data_in32 <= 32'd100;
+					reg_expected16 <= 16'd412;
+					reg_expected32 <= 32'd200000;
+				end
+				
+				4: begin // Both rst and in is active
+					reg_rst <= 1;
+					r_in <= 1;
+					reg_data_in16 <= 16'd100;
+					reg_data_in32 <= 32'd100;
+					reg_expected16 <= 16'd412;
+					reg_expected32 <= 32'd200000;
 				end
 			endcase
+			
+			#8;
 			
 			if (reg_out16 !== reg_expected16) begin
 				$display("16 bit register error: Inputs: %d, Output: %d, Expected state: %d", reg_data_in16, reg_out16, reg_expected16);
 				errors = errors + 1;
 			end
 			
-			else if (reg_out32 !== reg_expected32) begin
+			if (reg_out32 !== reg_expected32) begin
 				$display("32 bit register error: Inputs: %d, Output: %d, Expected state: %d", reg_data_in32, reg_out32, reg_expected32);
 				errors = errors + 1;
 			end
-			
-			#8;
 		end
 		
 		else begin
@@ -437,9 +449,20 @@ module components_tb;
 		#1;
 	end
 	
-	
 	always begin // Need to increment count, having it in each would screw it up
 		#10
 		count = count + 1;
+		
+		if (count == 23) begin
+			if (errors == 0) begin
+				$display("sucess"); // Niche 2072 standard msg
+			end
+			
+			else begin
+				$display("Failed: got %d errors", errors);
+			end
+			
+			$finish;
+		end
 	end
 endmodule
