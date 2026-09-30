@@ -1,9 +1,5 @@
 Flow report for FPGA-processor
-<<<<<<< HEAD
-Wed Sep 30 15:46:19 2026
-=======
-Wed Sep 30 16:52:58 2026
->>>>>>> a6c92e5db498c98ed0fde8180ae83dfc8b35d8dc
+Wed Sep 30 17:19:40 2026
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -44,14 +40,10 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-<<<<<<< HEAD
-; Flow Status                        ; Flow Failed - Wed Sep 30 15:46:19 2026      ;
-=======
-; Flow Status                        ; Flow Failed - Wed Sep 30 16:52:58 2026      ;
->>>>>>> a6c92e5db498c98ed0fde8180ae83dfc8b35d8dc
+; Flow Status                        ; Successful - Wed Sep 30 17:19:40 2026       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; FPGA-processor                              ;
-; Top-level Entity Name              ; FPGA-processor                              ;
+; Top-level Entity Name              ; components_tb                               ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C7G                              ;
 ; Timing Models                      ; Final                                       ;
@@ -74,60 +66,55 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-<<<<<<< HEAD
-; Start date & time ; 09/30/2026 15:46:12 ;
-=======
-; Start date & time ; 09/30/2026 16:52:29 ;
->>>>>>> a6c92e5db498c98ed0fde8180ae83dfc8b35d8dc
+; Start date & time ; 09/30/2026 17:19:32 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; FPGA-processor      ;
 +-------------------+---------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                        ;
-+-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
-+-------------------------------------+----------------------------------------+---------------+-------------+------------+
-<<<<<<< HEAD
-; COMPILER_SIGNATURE_ID               ; 10995770589198.179074717230964         ; --            ; --          ; --         ;
-=======
-; COMPILER_SIGNATURE_ID               ; 121383090718.179075114910180           ; --            ; --          ; --         ;
->>>>>>> a6c92e5db498c98ed0fde8180ae83dfc8b35d8dc
-; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
-; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --            ; --          ; --         ;
-; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --          ; --         ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --          ; --         ;
-+-------------------------------------+----------------------------------------+---------------+-------------+------------+
++--------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                               ;
++-------------------------------------+----------------------------------------+----------------+---------------+----------------+
+; Assignment Name                     ; Value                                  ; Default Value  ; Entity Name   ; Section Id     ;
++-------------------------------------+----------------------------------------+----------------+---------------+----------------+
+; COMPILER_SIGNATURE_ID               ; 10995770589198.179075277231420         ; --             ; --            ; --             ;
+; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                            ; --             ; --            ; eda_simulation ;
+; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (Verilog)              ; <None>         ; --            ; --             ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --             ; --            ; --             ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --             ; --            ; --             ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --             ; components_tb ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --             ; components_tb ; Top            ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --             ; components_tb ; Top            ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --             ; --            ; --             ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --             ; --            ; --             ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --             ; --            ; --             ;
+; TOP_LEVEL_ENTITY                    ; components_tb                          ; FPGA-processor ; --            ; --             ;
++-------------------------------------+----------------------------------------+----------------+---------------+----------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------+
-; Flow Elapsed Time                                                                                                        ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:30     ; 1.0                     ; 13185 MB            ; 00:00:49                           ;
-; Total                ; 00:00:30     ; --                      ; --                  ; 00:00:49                           ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                          ;
++------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name            ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Elaboration ; 00:00:08     ; 1.0                     ; 4722 MB             ; 00:00:16                           ;
+; Total                  ; 00:00:08     ; --                      ; --                  ; 00:00:16                           ;
++------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                    ;
-+----------------------+------------------+------------+------------+----------------+
-; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
-+----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; PHILOLEEE08A     ; Windows 10 ; 10.0       ; x86_64         ;
-+----------------------+------------------+------------+------------+----------------+
++--------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                      ;
++------------------------+------------------+------------+------------+----------------+
+; Module Name            ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
++------------------------+------------------+------------+------------+----------------+
+; Analysis & Elaboration ; Hovan_Surface    ; Windows 10 ; 10.0       ; x86_64         ;
++------------------------+------------------+------------+------------+----------------+
 
 
 ------------
 ; Flow Log ;
 ------------
-quartus_map --read_settings_files=on --write_settings_files=off FPGA-processor -c FPGA-processor
+quartus_map --read_settings_files=on --write_settings_files=off FPGA-processor -c FPGA-processor --analysis_and_elaboration
 
 
 

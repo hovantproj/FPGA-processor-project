@@ -1,0 +1,144 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/simulation/modelsim
+vALU
+Z1 !s110 1790753824
+!i10b 1
+!s100 ;H@YWA6YPJ2G8e32hZUce3
+Ikl_]LNjMcEl0S9T871b:W0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1790732611
+Z4 8C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v
+Z5 FC:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v
+L0 96
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1790753824.000000
+Z8 !s107 C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v|
+Z9 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton|C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components.v|
+!i113 1
+Z10 o-vlog01compat -work work
+Z11 !s92 -vlog01compat -work work +incdir+C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton
+Z12 tCvgOpt 0
+n@a@l@u
+vcomponents_tb
+R1
+!i10b 1
+!s100 H?d5ZGTW2gCjSo]1oQ2DX3
+IIAzR4Zj[FCazH^NhKME]B1
+R2
+R0
+w1790753649
+8C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v
+FC:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v
+L0 11
+R6
+r1
+!s85 0
+31
+R7
+!s107 C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton|C:/Users/hovan/Documents/GitHub/hovantproj/FPGA-processor-project/ece2072_project_skeleton/components_tb.v|
+!i113 1
+R10
+R11
+R12
+vmultiplexer
+R1
+!i10b 1
+!s100 eGjcES6NIk2`FN5ZCcjkJ0
+I<Hn86gEP;`zjzBn0g09eL0
+R2
+R0
+R3
+R4
+R5
+L0 59
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+vregister_n
+R1
+!i10b 1
+!s100 kU=ZHFNj03ghLTZP0n5]43
+I4DFGe[UJ6k6=`<P@KV<k]3
+R2
+R0
+R3
+R4
+R5
+L0 127
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+vsign_extend
+R1
+!i10b 1
+!s100 K;S7RZdeb41e9Jk9@OSSi0
+IWcl68<9LlMQOfzGgB2bo<3
+R2
+R0
+R3
+R4
+R5
+L0 10
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+vtick_FSM
+R1
+!i10b 1
+!s100 e=6<FfdVMUCMj1mnTGc2i1
+I4fjX5ldG:5GK[hl:=b96`1
+R2
+R0
+R3
+R4
+R5
+L0 25
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+ntick_@f@s@m

@@ -24,11 +24,12 @@ module components_tb;
 	tick_FSM tick_FSM(.rst(tick_rst), .clk(tick_clk), .enable(tick_enable), .tick(tick_out));
 	
 	// ALU
-	reg [31:0] alu_inputs = {32{1'b0}}; // Upper 16 bits is A, lower 16 is B
+	reg [31:0] alu_input_a = {16{1'b0}};
+	reg [31:0] alu_input_b = {16{1'b0}};
 	reg [2:0] alu_op;
 	wire [15:0] alu_out;
 	reg [15:0] alu_expected;
-	ALU ALU(.input_a(alu_inputs[31:16]), .input_b(alu_inputs[15:0]), .alu_op(alu_op), .result(alu_out));
+	ALU ALU(.input_a(alu_input_a), .input_b(alu_input_b), .alu_op(alu_op), .result(alu_out));
 	
 	// Multiplexer
 	reg [3:0] sel;
@@ -78,7 +79,7 @@ module components_tb;
 	
 	// Sign extender testcases
 	always begin
-		#1			
+		#1		
 		if (count < 3) begin
 			case (count)
 				0: begin // All 0s (should extend 0)
@@ -98,7 +99,7 @@ module components_tb;
 			#8
 			
 			if (sign_ext_out !== sign_ext_expected) begin
-				$display("Sign extender error: Input: %d, Output: %d, Expected: %d", sign_ext_in, sign_ext_out, sign_ext_expected);
+				$display("Sign extender error: Input: %b, Output: %b, Expected: %b", sign_ext_in, sign_ext_out, sign_ext_expected);
 				errors = errors + 1;
 			end
 		end
@@ -166,7 +167,8 @@ module components_tb;
 				0: begin
 					// normal multiplication
 					alu_op = 3'b000;
-					alu_inputs = {16'd6, 16'd10};
+					alu_input_a = 16'd6;
+					alu_input_b = 16'd10;
 					alu_expected = 16'd60;
 					
 				end
