@@ -9,7 +9,9 @@ Please enter your name and student ID: Philo Lee 36167762
 */
 module sign_extend(in, ext);
 
-	// This module sign extends the 9-bit input to a 16-bit output
+	/*
+	This module sign extends the 9-bit input to a 16-bit output
+	*/
 	
 	input [8:0] in;
 	output [15:0] ext;
@@ -22,8 +24,8 @@ endmodule
 
 module tick_FSM(rst, clk, enable, tick);
 	/* 
-	 * This module implements a tick FSM that will be used to
-	 * control the actions of the control unit
+	 This module implements a tick FSM that will be used to
+	 control the actions of the control unit, uses one hot encoding
 	 */
 
 	input rst;
@@ -56,7 +58,7 @@ endmodule
 
 module multiplexer(SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G, sel, Bus);
 	/* 
-	 * This module takes 10 inputs and places the correct input onto the bus.
+	 This module takes 10 inputs and places the selected input onto the bus
 	 */
 	input [15:0] R0;
 	input [15:0] R1;
@@ -92,7 +94,10 @@ endmodule
 
 
 module ALU (input_a, input_b, alu_op, result);
-	// This module computes arithmetic result from input_a and input_b based on alu_op
+	/*
+	This module computes arithmetic result from input_a and input_b based on alu_op
+	*/
+	
     input [15:0] input_a;
     input [15:0] input_b;
     input [2:0] alu_op;
@@ -120,14 +125,11 @@ endmodule
 
 
 module register_n(data_in, r_in, clk, Q, rst);
-	// This module implements registers that will be used in the processor.
-	
-	// To set parameter N during instantiation, you can use:
-	// register_n #(.N(num_bits)) reg_IR(.....), 
-	// where num_bits is how many bits you want to set N to
-	// and "..." is your usual input/output signals
+	/* 
+	This module implements registers that will be used in the processor
+	*/
 
-	parameter N = 16;
+	parameter N = 16; // Use register_n #(.N(num_bits)) reg_IR(.....) when calling
 	
 	input wire [N-1:0] data_in;
 	input wire r_in;

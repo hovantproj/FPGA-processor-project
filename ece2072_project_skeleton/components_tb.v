@@ -31,11 +31,10 @@ module components_tb;
 	ALU ALU(.input_a(alu_inputs[31:16]), .input_b(alu_inputs[15:0]), .alu_op(alu_op), .result(alu_out));
 	
 	// Multiplexer
-	reg [15:0] SignExtDin, R0, R1, R2, R3, R4, R5, R6, R7, G;
 	reg [3:0] sel;
 	wire [15:0] mult_out;
 	reg [15:0] mult_expected;
-	multiplexer multiplexer(.SignExtDin(SignExtDin), .R0(R0), .R1(R1), .R2(R2), .R3(R3), .R4(R4), .R5(R5), .R6(R6), .R7(R7), .G(G), .sel(sel), .Bus(mult_out));
+	multiplexer multiplexer(.SignExtDin(16'd9), .R0(16'd0), .R1(16'd1), .R2(16'd2), .R3(16'd3), .R4(16'd4), .R5(16'd5), .R6(16'd6), .R7(16'd7), .G(16'd8), .sel(sel), .Bus(mult_out));
 	
 	// Registers
 	reg r_in;
@@ -91,9 +90,20 @@ module components_tb;
 					sign_ext_expected <= 16'b1111111101010101;
 				end
 			endcase
+
+			#8
+			
+			if (sign_ext_out !== sign_ext_expected) begin
+				$display("Sign extender error: Input: %d, Output: %d, Expected: %d", sign_ext_in, sign_ext_out, sign_ext_expected);
+				errors = errors + 1;
+			end
 		end
 		
-		#9;
+		else begin
+			#8 // So that its consistent 10ns (1 + 8 + 1)
+		end
+		
+		#1
 	end
 	
 	// Tick FSM testcases
@@ -168,25 +178,23 @@ module components_tb;
 	
 	// Multiplexer testcases
 	always begin
+		#1
+		if (count < 10) begin
+			sel = count;
+			mult_expected = count;
+		end
 		
+		else if (count == 11) begin
+			sel = 16'd11;
+			mult_expected = 16'd0;
+		end
+		
+		#9;
 	end
 	
 	// Register testcases
 	always begin
 		
-	end
-	
-	// Check sign extender
-	always begin
-		#9
-		if (count < 3) begin
-			if (sign_ext_out !== sign_ext_expected) begin
-				$display("Sign extender error: Input: %d, Output: %d, Expected: %d", sign_ext_in, sign_ext_out, sign_ext_expected);
-				errors = errors + 1;
-			end
-		end
-		
-		#1;
 	end
 	
 	// Check tick fsm
