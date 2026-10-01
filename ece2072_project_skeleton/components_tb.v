@@ -114,7 +114,7 @@ module components_tb;
 	// Tick FSM testcases
 	always begin
 		#1
-		if (count < 5) begin
+		if (count < 9) begin
 			case (count)
 				0: begin // Rst high so goes to 1st tick (0001)
 					tick_rst <= 1;
@@ -122,7 +122,7 @@ module components_tb;
 					tick_expected <= 4'b0001;
 				end
 				
-				1: begin // 2nd tick
+				1: begin // 2nd tick (disable rst)
 					tick_rst <= 0;
 					tick_enable <= 1;
 					tick_expected <= 4'b0010;
@@ -138,6 +138,26 @@ module components_tb;
 				
 				4: begin // Keep ticking after 4th, should go back to 1st
 					tick_expected <= 4'b0001;
+				end
+				
+				5: begin // Ticking so its not A when testing
+					tick_expected <= 4'b0010;
+				end
+				
+				6: begin // Both rst and enable = 1
+					tick_rst <= 1;
+					tick_expected <= 4'b0001;
+				end
+				
+				7: begin // Ticking so its not A when testing
+					tick_rst <= 0;
+					tick_enable <= 1;
+					tick_expected <= 4'b0010;
+				end
+				
+				8: begin // Both rst and enable = 0 (should hold state)
+					tick_enable <= 0;
+					tick_expected <= 4'b0010;
 				end
 			endcase
 			
@@ -337,7 +357,7 @@ module components_tb;
 					// -1 shifts 4 = -1
 					alu_op = 3'b011;
 					alu_input_a = 16'd4;
-					alu_input_b = 16'd1;
+					alu_input_b = -16'd1;
 					alu_expected = -16'd1;	
 				
 				end
